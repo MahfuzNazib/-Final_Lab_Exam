@@ -1,16 +1,18 @@
 <?php
+    require_once('function.php');
     if(isset($_POST['btnSubmit']))
     {
-        $username = $_POST['username'];
+        $id = $_POST['userId'];
         $password = $_POST['password'];
+        $login = login($id,$password);
 
-        if($username == "Admin" && $password == "Admin")
+        if($login)
         {
-            header('location:home.php');
+            header('home.php');
         }
         else
         {
-            echo "Invalid Username or Password";
+            echo "Invalid ID or Password";
         }
     }
 ?>
@@ -29,8 +31,8 @@
         <center>
             <h1><u>User Login</u></h1>
 
-            Username : <br>
-            <input type="text" name="username" id="Username">
+            UserID : <br>
+            <input type="text" name="userId" id="Username">
             <p id="errorUsername"></p>
             <br><br>
 

@@ -1,4 +1,4 @@
-function LoginValidation()
+/*function LoginValidation()
 {
     var Username = null;
     var Password = null;
@@ -46,143 +46,109 @@ function LoginValidation()
 
         
 
-    }
-    else
+    //}
+    /*else
     {
         alert("Something Went Wrong");
     }
-}
-
+}*/
 
 
 function registration()
 {
-    //Flag Variable
+    
 
     var Name = null;
     var Email = null;
     var Type = null;
     var ConPass = null;
     var Password = null;
+    var Aiub_Id = null;
 
-    //Get Value from HTML Page
+    var aiub_id = document.getElementById('aiub_id').value;
+    var password = document.getElementById('pass').value;
+    var conPass = document.getElementById('conPass').value;
     var name = document.getElementById('name').value;
     var email = document.getElementById('email').value;
-    var type = document.getElementById('phone').value;
-    var username = document.getElementById('username').value;
-    var password = document.getElementById('password').value;
+    var type = document.getElementById('type').value;
 
-    var regexName = /^[a-zA-Z]/;
-	var isValidName = regexName.test(name);
-
-	var regexEmail = /[a-z]?[0-9]+@+[a-z]+.com|.org|.edu/;
-    var isValidEmail = regexEmail.test(email);
-    
-    //Name Validation
-
-    if(name == "")
+    if(aiub_id == "")
     {
-        document.getElementById('msgName').innerHTML = "Empty Name";
-        Name = "Error";
+        document.getElementById('errorid').innerHTML = "Empty ID";
+        Aiub_Id = "Error";
     }
     else
     {
-        if(isValidName)
-        {
-            Name = null;
-        }
-        else
-        {
-            document.getElementById('msgName').innerHTML = "Name start with Letter";
-            Name = "Error";
-        }
+        Aiub_Id = null;
     }
-
-    //Email Validation
-
-    if(email == "")
-    {
-        document.getElementById('msgEmail').innerHTML = "Empty Email Address";
-        Email = "Error";
-    }
-    else
-    {
-        if(isValidEmail)
-        {
-            Email = null;
-        }
-        else
-        {
-            document.getElementById('msgEmail').innerHTML = "Invalid Email Address";
-            Email = "Error";
-        }
-    }
-
-    //Phone Validation
-    if(phone == "")
-    {
-        document.getElementById('msgPhone').innerHTML = "Empty Phone";
-        Phone = "Error";
-    }
-    else
-    {
-        Phone = null;
-    }
-
-    //Username Validation
-
-    if(username == "")
-    {
-        document.getElementById('msgUserName').innerHTML = "Empty Username";
-        Username = "Error";
-    }
-    else
-    {
-        if(username.length > 5)
-        {
-            Username = null;
-        }
-        else
-        {
-            document.getElementById('msgUserName').innerHTML = "Username Must be greater then 5 char";
-            Username = "Error";
-        }
-    }
-
-    //Password Validation
 
     if(password == "")
     {
-        document.getElementById('msgPassword').innerHTML = "Empty Password";
-        Password = "Error";
+        document.getElementById('errorpass').innerHTML = "Empty Pass";
+        Password  = "Error";
     }
     else
     {
-        if(password.length >= 4)
+        if(password.length >= 5)
         {
             Password = null;
         }
         else
         {
-            document.getElementById('msgPassword').innerHTML = "Password Must be Greater the 4 char";
+            document.getElementById('errorpass').innerHTML = "Password must be greter then 5 char";
             Password = "Error";
         }
     }
 
-    if(Name == null && Email == null && Phone == null && Username == null && Password == null)
+    if(conPass != password)
+    {
+        document.getElementById('errorconpass').innerHTML = "Password do not match";
+        ConPass = "Error";
+    }
+    else
+    {
+        ConPass = null;
+    }
+
+    if(name == "")
+    {
+        document.getElementById('errorname').innerHTML = "Empty Name";
+        Name = "Error";
+    }
+    else
+    {
+        Name = null;
+    }
+    if(email == "")
+    {
+        document.getElementById('erroremail').innerHTML = "Empty Mail";
+    }
+    else
+    {
+        Email = null;
+    }
+
+    if(type == "")
+    {
+        document.getElementById('errortype').innerHTML = "Add User Type";
+        Type = "Error";
+    }
+    else
+    {
+        Type = null;
+    }
+
+
+    if(Name == null && Email == null && Type == null && Password == null && ConPass == null && Aiub_Id == null)
     {
         //Pass the data in another php from through AJAX Request
-
-        var Fullname = document.getElementById('name').value;
-        var usermail = document.getElementById('email').value;
-        var UserPhone = document.getElementById('phone').value;
-        var Username = document.getElementById('username').value;
-        var Password = document.getElementById('password').value;
+        alert('Ajax');
         
         var xhttp = new XMLHttpRequest();
-        xhttp.open("POST","../php/AdminRegistrationCheck.php",true);
+        xhttp.open("POST","abc.php",true);
         xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        xhttp.send("Name="+Fullname+"&Email="+usermail+"&Phone="+UserPhone+"&Username="+Username+"&Password="+Password);
+        //xhttp.send("Name="+Fullname+"&Email="+usermail+"&Type="+UserType+"&AIUB="+AIUB+"&Password="+Password);
+        xhttp.send("Name="+name+"&Email="+email+"&Type="+type+"&AIUB="+aiub_id+"&Password="+password);
         xhttp.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200)
             {

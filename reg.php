@@ -1,25 +1,3 @@
-<?php
-    require_once('function.php');
-
-    if(isset($_POST['btnsubmit']))
-    {
-        $name = $_POST['membername'];
-        $phone = $_POST['number'];
-        $email = $_POST['email'];
-        $dept = $_POST['dept'];
-
-        $register = AddMember($name,$phone,$email,$dept);
-        if($register)
-        {
-            echo "Successfully Registered";
-        }
-        else
-        {
-            echo "Not Registered";
-        }
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,35 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script type="text/javascript" src="script.js"></script>
-    <title>Add Member</title>
+    <title>Document</title>
 </head>
 <body>
-    <form method="POST" action="#">
-        <center>
+<center>
             <h2><u>Registration</u></h2>
 
             AIUB ID : 
-            <input type="text" name="aiub_id"><br><br>
+            <input type="text" name="aiub_id" id="aiub_id">
+            <p id="errorid"></p>
+            <br><br>
 
             Password : 
-            <input type="password" name="password"><br><br>
+            <input type="password" name="password" id="pass">
+            <p id="errorpass"></p>
+            <br><br>
 
             Confirm Pass: 
-            <input type="password" name="conPass"><br><br>
+            <input type="password" name="conPass" id="conPass">
+            <p id="errorconpass"></p>
+            <br><br>
 
             Member Name : 
-            <input type="text" name="membername"><br><br>
+            <input type="text" name="membername" id="name">
+            <p id="errorname"></p>
+            <br><br>
 
             Email : 
-            <input type="email" name="email"><br><br>
+            <input type="email" name="email" id="email">
+            <p id="erroremail"></p>
+            <br><br>
 
             User Type : 
-            <input type="text" name="type"><br><br>
+            <input type="text" name="type" id="type">
+            <p id="errortype"></p>
+            <br><br>
 
-            <input type="submit" name="btnsubmit" value="Register" onclicke="registration()">
+            <input type="submit"  value="Register" onclick="registration()">
 
             <a href="Login.php">Login</a>
         </center>
-    </form>
 </body>
 </html>
